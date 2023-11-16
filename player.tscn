@@ -42,7 +42,9 @@ script = ExtResource("1_gtuvt")
 scale = Vector2(0.317778, 0.317778)
 sprite_frames = SubResource("SpriteFrames_tb562")
 animation = &"walk"
-frame_progress = 0.44646
+frame_progress = 0.682121
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_x2gav")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
