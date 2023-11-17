@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 
 signal start_game
 
@@ -30,7 +30,6 @@ func update_score(score):
 	$ScoreLabel.text = str(score)
 
 func _on_message_timer_timeout():
-	print_debug("Message timer timeout")
 	$Message.hide()
 
 func _on_start_button_pressed():

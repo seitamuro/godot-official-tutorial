@@ -17,17 +17,18 @@ func _process(_delta):
 func _on_player_hit():
 	$ScoreTimer.stop()
 	$MobTimer.stop()
-	$HUD/HUD.show_game_over()
+	$HUD.show_game_over()
 
 func new_game():
 	score = 0
+	$HUD.update_score(score)
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
 	get_tree().call_group("mobs", "queue_free")
 
 func _on_score_timer_timeout():
 	score += 1
-	$HUD/HUD.update_score(score)
+	$HUD.update_score(score)
 
 func _on_start_timer_timeout():
 	$MobTimer.start()
@@ -49,3 +50,7 @@ func _on_mob_timer_timeout():
 	mob.linear_velocity = velocity.rotated(direction)
 
 	add_child(mob)
+
+
+func _on_hud_start_game():
+	new_game()
