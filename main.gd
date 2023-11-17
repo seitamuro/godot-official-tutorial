@@ -5,22 +5,29 @@ var score
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	new_game()
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	pass
 
-
-# Gameover
-func _on_player_hit():
+func gameover():
 	$ScoreTimer.stop()
 	$MobTimer.stop()
 	$HUD.show_game_over()
+	$Music.stop()
+	$DeathSound.play()
+
+
+# Gameover
+func _on_player_hit():
+	gameover()
+
 
 func new_game():
 	score = 0
+	$Music.play()
 	$HUD.update_score(score)
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
